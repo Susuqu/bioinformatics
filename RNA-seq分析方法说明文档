@@ -1,0 +1,82 @@
+RNA-seq分析方法说明文档
+1 原始数据下机质控
+对原始下机的测序数据进行测序质量评估，并对低质量的reads进行过滤。
+
+1.1 FastQC统计
+
+FastQC软件可以对原始下机的测序数据进行测序质量统计，统计的指标包括（对指标含义简要表述）：
+	基础统计：文件名、测序量、reads数量、GC含量等；
+	每个位置碱基的测序质量值；
+	每个序列的测序质量值；
+	每个位置碱基的分布情况；
+	序列长度分布；
+	重复序列的水平分布；
+	接头的含量分布；
+	k个碱基重复出现（Kmer）的分布情况； 
+
+1.2 Trimmomatic去除接头片段
+
+官方网址：http://www.usadellab.org/cms/?page=trimmomatic
+Trimmomatic是一个针对 Illumina高通量测序的reads trim的工具，主要用来去除 Illumina 平台的 Fastq 序列中的接头，并根据碱基质量值对 Fastq 进行修剪。支持多线程，处理数据速度快。
+Trimmomatic有两种策略去除接头：Palindrome和Simple。Simple trimming是利用每一个adapter序列去跟reads匹配，如果匹配上，就删除reads的这部分序列。
+ Palindrome trimming  是在adapter序列中reading through一个短的片段。在这个方法中， 相应的adapter序列在硅片上的连接被连接到了reads的开始，形成了adapter+read序列，正链和反链比对，如果比对显示read-through，正链剪切掉adapter，反链去掉（由于它没有包含新的数据）。
+
+2 比对
+
+RNA测序并不能直接使用DNA测序常用的BWA、Bowtie等比对软件，这是由于真核生物内含子的存在，导致测到的reads并不与基因组序列完全一致（如下图1所示），因此需要使用Tophat/HISAT2/STAR等专门为RNA测序设计的软件进行比对。
+ 
+图1. DNA比对和RNA比对的比较
+
+
+2.1 HISAT2比对到参考基因组
+
+官方网址：https://ccb.jhu.edu/software/hisat2/index.shtml
+HISAT2是一种用于将新一代测序读数（DNA和RNA）映射到人类基因组（以及单个参照基因组）的快速且灵敏的比对程序。HISAT2是TopHat2/Bowti2的继任者，使用改进的BWT算法，实现了更快的速度和更少的资源占用，在《Nature Protocol》上发表了相应的文章。
+使用HISAT2比对分为几个步骤：
+	建立索引：直接去HISAT2的主页下载index文件或者自行通过构建索引；
+	比对、排序：把fastq格式的reads比对上去得到SAM文件，接着用SAMTools把它转为二进制的BAM文件。
+
+2.2 去除重复片段
+
+Picard标记重复片段：在制备文库的过程中，由于PCR扩增过程中会存在一些偏差，也就是说有的序列会被过量扩增。这样，在比对的时候，这些过量扩增出来的完全相同的序列就会比对到基因组的相同位置。而这些过量扩增的reads并不是基因组自身固有序列，不能作为变异检测的证据，因此，要尽量去除这些由PCR扩增所形成的duplicates，这一步可以使用Picard来完成。通过给这些序列设置一个flag以标志它们，方便后续SAMTools的识别从而去除已标记的重复片段。
+
+3 鉴定差异表达基因
+3.1 DESeq2
+
+不同样品和条件下差异表达基因的识别是RNA-seq分析的重要目标。差异基因表达分析通常都是利用各种R包进行分析的，常用的有DESeq2，edgeR，limma等几种。该分析流程中使用的是DESeq2来进行的差异表达分析。
+
+DESeq2是DESeq包的更新版本，它的设计思想就是针对count类型的数据，是基于负二项分布模型。DESeq2包分析差异表达基因简单来说分为三步：
+	构建dds矩阵；
+	对基因或转录本的read counts数目进行标准化（normalization）；
+	差异分析；
+	设定阈值，筛选差异基因。
+
+其中构建dds矩阵需要：表达矩阵 、样品信息矩阵（即分组矩阵）和差异比较矩阵。此外，在RNA-Seq的分析中，对基因或转录本的read counts数目进行标准化（normalization）是一个极其重要的步骤，因为落在一个基因区域内的read counts数目取决于基因长度和测序深度。很容易理解，一个基因越长，测序深度越高，落在其内部的read counts数目就会相对越多。当我们进行基因差异表达的分析时，往往是在多个样本中比较不同基因的表达量，如果不进行数据标准化，比较结果是没有意义的。因此不能直接比较表达量，必须将数据进行归一化处理。
+
+3.2差异表达基因计算
+
+在利用RNA-seq数据比较分析两个样品中同一个基因是否存在差异表达的时候，一般选取两个标准：FoldChange和q-value
+1）	FoldChange：就是两样品中同一个基因表达水平的变化倍数。
+2）	FDR校正后的p-value（即q-value），FDR值的计算方法如下：
+	对每个基因进行p-value的计算：假设观测到基因A对应的reads数为x，已知在一个大文库中，每个基因的表达量只占所有基因表达量的一小部分，在这种情况下，p(x)的分布服从泊松分布。已知样本一中唯一比对到基因组的总reads数为N1，样本二中唯一比对到基因组的总reads数为N2，样本一中唯一比对到基因A的总reads数为x，样本二中唯一比对到基因A的总reads数为y，则基因A在两样本中表达量相等的概率可由以下公式计算：
+ 
+	用FDR错误控制法对p-value作多重假设检验校正：FDR错误控制法是Benjamini于1995年提出一种方法,通过控制FDR(False Discovery Rate)来决定P值的域值. 假设你挑选了R个差异表达的基因，其中有S个是真正有差异表达的，另外有V个其实是没有差异表达的，是假阳性的。实践中希望错误比例Q＝V/R平均而言不能超过某个预先设定的值（比如0.05），在统计学上，这也就等价于控制FDR不能超过5％。对所有候选基因的p值进行从小到大排序，则若想控制fdr不能超过q，则只需找到最大的正整数i，使得 p(i)<= (i*q)/m.然后，挑选对应p(1),p(2),...,p(i)的基因做为差异表达基因，这样就能从统计学上保证fdr不超过q。 因此，FDR的计算公式如下：
+q-value(i)=p(i)*length(p)/rank(p)
+
+
+4 基因共表达分析
+
+基因共表达分析是指通过基因表达的相似性来找到表达模式接近的同类基因，该流程中使用coseq进行基因的共表达分析。coseq使用自适应变换和混合模型或K均值算法对特征（即基因）概况进行聚类，并提供了相应的模型选择标准从而帮助选择适当数量的聚类。本流程中使用的是：Arcsin transformation, TMM normalization。
+
+5 可选分析（略）
+5.1 Reconstructure: StringTie
+
+5.2 Variant calls: GATK
+
+6 其他说明
+目前该流程的搭建是基于RNACocktail_v0.2.2版本，以下链接供参考：https://github.com/bioinform/RNACocktail/archive/v0.2.2.tar.gz
+
+
+
+
+
