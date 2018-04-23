@@ -122,3 +122,44 @@
 	sess =tf.InteractiveSession()
 	sess.run(init)
 	a.eval()
+
+
+
+
+
+
+##some questions
+步长（stride）和边界（padding）
+池化
+relu（非线性的变换）和softmax？
+
+
+
+占位符的个数，就是指x像素点的个数么？
+	
+	x = tf.placeholder(tf.float32, [None, 784])
+
+
+trained+test的数据集都读进来了吗？
+	
+	mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+
+死活想不起来这句啥意思了？
+	
+	batch_xs, batch_ys = mnist.train.next_batch(batch_size=128,shuffle=True)
+
+	acc = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+
+
+为啥要传入这个？
+
+	keep_prob = tf.placeholder(tf.float32,name='keep_prob')
+
+还是不清楚那个plt一张图片怎么显示啊？
+	
+	MNIST_data：这下面的4个文件是4张片子么？
+
+
+因为传入的数据为转好的列向量，需要将他转化成矩阵的形式
+	
+	x_image = tf.reshape(cnn_x, [-1, 28, 28, 1])
