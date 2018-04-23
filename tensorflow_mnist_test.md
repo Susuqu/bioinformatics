@@ -8,7 +8,7 @@
 ---
 
 
-##对于步长选择的理解：
+## 对于步长选择的理解：
 可以对比下，两种步长0.1，0.01 的情况下预测准确率的差别，比如步长是0.1时，那么永远也达不到最优化的准确性效果（这就相当于A和B之间距离实际为0.2m，但是B每一步都要走1m，而且方向都是朝着一个距离在走，所以无论B走多少次，B和A直接的距离都无法最接近真实值）。不过一般推荐步长是：0.01~0.0001。
 
 	e.g.：
@@ -114,50 +114,41 @@
 		
 	
 
-##对于每次迭代准确性不同的的理解：
+## 对于每次迭代准确性不同的的理解：
 因为初始值是随机的，所以结果不同，但是如果训练到最后，应该相差不大。
 
 
-##linux下交互型来每次看下定义了什么、输出什么，更便于理解：
+## linux下交互型来每次看下定义了什么、输出什么，更便于理解：
 	sess =tf.InteractiveSession()
 	sess.run(init)
 	a.eval()
 
+---
 
-
-
-
-
-##some questions
-步长（stride）和边界（padding）
-池化
-relu（非线性的变换）和softmax？
-
-
-
-占位符的个数，就是指x像素点的个数么？
+## some questions
+占位符的个数，就是指x像素点的个数么？——yes
 	
 	x = tf.placeholder(tf.float32, [None, 784])
 
 
-trained+test的数据集都读进来了吗？
+trained+test的数据集都读进来了吗？——yes
 	
 	mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
-死活想不起来这句啥意思了？
+这个是指：将所有的数据集随机分成不同的batch，每个batch包含了128张图片，每次读取一个batch的图片；sess.run读取数据集的方式就是必须写成dict的形式；
 	
 	batch_xs, batch_ys = mnist.train.next_batch(batch_size=128,shuffle=True)
 
 	acc = sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
 
 
-为啥要传入这个？
+为啥要传入这个？——为了后续的参数调整时，变化量很小时不会因为梯度推回而损失特征。
 
 	keep_prob = tf.placeholder(tf.float32,name='keep_prob')
 
-还是不清楚那个plt一张图片怎么显示啊？
+还是不清楚那个plt一张图片怎么显示啊？——plt.imshow???明天实验一下。
 	
-	MNIST_data：这下面的4个文件是4张片子么？
+	MNIST_data：这下面的4个文件是4张片子——不是啊啊
 
 
 因为传入的数据为转好的列向量，需要将他转化成矩阵的形式
