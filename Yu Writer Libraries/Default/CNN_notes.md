@@ -1,12 +1,8 @@
----
-style: candy
----
-
 CNN basic knowledges
 ==========
-Record of some key notes by **QuSusu**.
-Some statements were directly copy from others.
-Start at 2018/04/23, last update at 2018/04/23.
+- Record of some key notes by **QuSusu**.
+- Some statements were directly copy from others.
+- Start at 2018/04/23, last update at 2018/04/23.
 
 ----
 **所谓卷积神经网络，就是会自动的对于一张图片学习出最好的卷积核以及这些卷积核的组合方式，也就是对于一张图片的任务来说，求出最好的图片对于本任务的特征的表达，然后来进行判断** 
@@ -25,6 +21,9 @@ Start at 2018/04/23, last update at 2018/04/23.
 
 超参数分别具体包括哪些过程的哪些值、如何给定这些值一个初始值、偏好值等等，详见下面的表格内容：
 
+![超参数表格](%E8%B6%85%E5%8F%82%E6%95%B0%E8%A1%A8%E6%A0%BC.PNG)
+
+---
 | 过程 | 超参数 | 如何给定对应的初始值？ | 偏好值 | 举例 | 
 |---|---|---|---|---|---|---|
 | 卷积 | 卷积层数 | 人工给定 | 好像没有偏好值 | 2|
@@ -37,6 +36,7 @@ Start at 2018/04/23, last update at 2018/04/23.
 |   | 全连接的输出特征值个数 | 人工给定 | 无 |首次180，第二次为3 |
 | 其他 | 步长（stride） | 人工给定 | 无 | 2 |
 |   | 边界（padding） | 人工给定 | 无 | zero padding |
+---
 
 ### 2.一个卷积过程的例子
 在实际做卷积的过程，可能最困惑的就是卷积核大小的选取、数据是由几维变成了几维、CNN的过程是如何的等等问题，那么结合上面关于参数的说明，来看一个非常简单的例子帮助理解数据的维度变换等细节内容：这是一个比较简单的例子：对每一副图片用两层卷积、两层池化、两次relu、两次全连接进行学习，对最后一次全连接的结果（n个特征）通过softmat函数进行分类。
