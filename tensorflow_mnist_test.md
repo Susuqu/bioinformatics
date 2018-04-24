@@ -154,3 +154,16 @@ trained+test的数据集都读进来了吗？——yes
 因为传入的数据为转好的列向量，需要将他转化成矩阵的形式
 	
 	x_image = tf.reshape(cnn_x, [-1, 28, 28, 1])
+
+其实关于python里的函数定义，我一直有个疑问：
+	
+	https://www.zhihu.com/question/25950466
+
+
+Python学习def函数的定义、使用及参数传递（这个介绍比较好理解）
+
+	https://blog.csdn.net/nysyxxg/article/details/42238541
+
+python关于传参：
+
+	https://blog.csdn.net/lis_12/article/details/54618868
