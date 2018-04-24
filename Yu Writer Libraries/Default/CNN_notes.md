@@ -12,6 +12,9 @@ CNN basic knowledges
 ---
 
 ## I.基本概念（后续补充吧，今天来不及写这个了）
+[机器学习相关的一个帖子](http://nooverfit.com/wp/category/cnn/)
+
+
 
 ## II. 参数设定 & 一个卷积过程的例子
 ### 1.参数设定
