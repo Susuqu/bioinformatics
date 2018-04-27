@@ -9,6 +9,6 @@
 |---|---|
 
 马上这周要结束了，已有计划完成情况？嗯，明天得加油咯……以及，有一些文档需要整理：
-- git文档补充pycharm及配置；
-- tensorflow的md文档，主要是安装包过程中的一些细节：比如还可以在setting里安装package，get了小tips；
-- eCLIP阅读文献的记录；
+- git文档补充pycharm及配置；——finished
+- tensorflow的md文档，主要是安装包过程中的一些细节：比如还可以在setting里安装package，get了小tips；——finished
+- eCLIP阅读文献的记录；——delay，先把TensorFlow run完。
