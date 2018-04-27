@@ -167,3 +167,11 @@ Python学习def函数的定义、使用及参数传递（这个介绍比较好�
 python关于传参：
 
 	https://blog.csdn.net/lis_12/article/details/54618868
+
+
+知道TensorFlow有多讨厌么？安装很久安不上，总是显示如下报错：
+
+    Could not find a version that satisfies the requirement tensorflow
+
+然后试了1.5版本也不行，后来看提示说要升级pip，升级了pip到10.0，然后pycharm又得升级了……坑！升级了pycharm还是安装TensorFlow还是同样的报错，最后师傅帮检查发现是虚拟环境的设置有问题，给这个项目重新设置了一个python的虚拟环境竟然就好了！！！
+总之，解决了就好，但确实有点坎坷，慢慢积累吧！
