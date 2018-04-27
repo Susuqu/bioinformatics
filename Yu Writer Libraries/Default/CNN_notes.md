@@ -2,7 +2,7 @@ CNN basic knowledges
 ==========
 - Record of some key notes by **QuSusu**.
 - Some statements were directly copy from others.
-- Start at 2018/04/23, last update at 2018/04/23.
+- Start at 2018/04/23, last update at 2018/04/27.
 
 ----
 **所谓卷积神经网络，就是会自动的对于一张图片学习出最好的卷积核以及这些卷积核的组合方式，也就是对于一张图片的任务来说，求出最好的图片对于本任务的特征的表达，然后来进行判断** 
@@ -14,8 +14,6 @@ CNN basic knowledges
 ## I.基本概念（后续补充吧，今天来不及写这个了）
 [机器学习相关的一个帖子](http://nooverfit.com/wp/category/cnn/)
 
-
-
 ## II. 参数设定 & 一个卷积过程的例子
 ### 1.参数设定
 一般在我们进行一个CNN训练的时候，会涉及到两大类参数：超参数（Hyperparameters）和参数（parameters）。
@@ -24,14 +22,7 @@ CNN basic knowledges
 
 超参数分别具体包括哪些过程的哪些值、如何给定这些值一个初始值、偏好值等等，详见下面的表格内容：
 
-![超参数表格](%E8%B6%85%E5%8F%82%E6%95%B0%E8%A1%A8%E6%A0%BC.PNG)
-
----
-
-
-
-
-|过程|超参数|如何给定对应的初始值|偏好值|举例|999|
+|过程|超参数|如何给定对应的初始值|偏好值|举例||
 |:---|:---|:---|:---|:---|---|
 | 卷积 | 卷积层数 | 人工给定 | 好像没有偏好值 | 2||
 |   | 卷积核大小 | 人工给定 | 奇数 | 3x3 ||
@@ -43,13 +34,6 @@ CNN basic knowledges
 |   | 全连接的输出特征值个数 | 人工给定 | 无 |首次180，第二次为3 ||
 | 其他 | 步长（stride） | 人工给定 | 无 | 2 ||
 |   | 边界（padding） | 人工给定 | 无 | zero padding ||
-
-
-
-
-
-
-
 
 ---
 
