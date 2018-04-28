@@ -31,7 +31,7 @@ x_list=[]
 mnist=input_data.read_data_sets("MNIST_data/",one_hot=True)
 with tf.Session() as sess:
     sess.run(init)
-    for i in range(20000):
+    for i in range(3000):
         batch_xs, batch_ys=mnist.train.next_batch(batch_size=128,shuffle=True)
         sess.run(train_step,feed_dict={x:batch_xs,y_:batch_ys})
         if i%500==0:
@@ -118,3 +118,30 @@ correct_prediction = tf.equal(tf.argmax(cnn_y,1), tf.argmax(prediction,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
 init = tf.global_variables_initializer()
+
+# 3-CNN模型（网上示例）运行及结果
+mnist2=input_data.read_data_sets("MNIST_data/",one_hot=True)
+
+cnn_list=[]
+with tf.Session() as sess:
+    sess.run(init)
+    for i in range(3000):
+        batch_xs,batch_ys=mnist2.train.next_batch(128)
+        sess.run(train_step,feed_dict={cnn_x:batch_xs,cnn_y:batch_ys,keep_prob:0.5})##训练得到的y值
+        if i%500==0:
+            acc=sess.run(accuracy,feed_dict={cnn_x:mnist2.test.images,cnn_y:mnist2.test.labels,keep_prob:1})##test集合里的y（实际值）
+            cnn_list.append(acc)
+            print('迭代次数为%d,准确性为：%.4f'%(i,acc))
+
+######################################################################
+import matplotlib.pyplot as plt
+import pandas as pd
+
+plt.figure(figsize=(50,25),dpi=300)
+
+data=pd.DataFrame([x_list,linear_list,cnn_list]).T
+data.columns=['times','linear','cnn']
+
+data.plot(x='times',xlim=(0,3000),ylim=(0,1),titile='compare linear with cnn')
+plt.show()
+
