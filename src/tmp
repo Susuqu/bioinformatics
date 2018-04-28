@@ -126,3 +126,9 @@ Traceback (most recent call last):
 AttributeError: Unknown property titile
 
 Process finished with exit code 1
+
+
+
+
+
+print('迭代次数为%05d,准确性为：%.4f'%(i,acc)) #在猜测是不是因为这个报错了；结果出来了可是没有绘图；
