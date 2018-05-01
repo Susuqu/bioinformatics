@@ -142,6 +142,6 @@ plt.figure(figsize=(50,25),dpi=300)
 data=pd.DataFrame([x_list,linear_list,cnn_list]).T
 data.columns=['times','linear','cnn']
 
-data.plot(x='times',xlim=(0,3000),ylim=(0,1),titile='compare linear with cnn')
+data.plot(x='times',xlim=(0,3000),ylim=(0,1),title='compare linear with cnn')
 plt.show()
 
