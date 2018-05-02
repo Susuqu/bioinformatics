@@ -1,4 +1,8 @@
 # -*-coding:utf-8 -*-
+'''
+QuSusu
+已测，没有问题，对应的结果记录和一些小问题在tensorflow_mnist_test.md文件中
+'''
 # sess =tf.InteractiveSession()
 # sess.run(init)
 # a.eval()
@@ -31,7 +35,7 @@ x_list=[]
 mnist=input_data.read_data_sets("MNIST_data/",one_hot=True)
 with tf.Session() as sess:
     sess.run(init)
-    for i in range(3000):
+    for i in range(15000):
         batch_xs, batch_ys=mnist.train.next_batch(batch_size=128,shuffle=True)
         sess.run(train_step,feed_dict={x:batch_xs,y_:batch_ys})
         if i%500==0:
@@ -125,7 +129,7 @@ mnist2=input_data.read_data_sets("MNIST_data/",one_hot=True)
 cnn_list=[]
 with tf.Session() as sess:
     sess.run(init)
-    for i in range(3000):
+    for i in range(15000):
         batch_xs,batch_ys=mnist2.train.next_batch(128)
         sess.run(train_step,feed_dict={cnn_x:batch_xs,cnn_y:batch_ys,keep_prob:0.5})##训练得到的y值
         if i%500==0:
@@ -142,6 +146,6 @@ plt.figure(figsize=(50,25),dpi=300)
 data=pd.DataFrame([x_list,linear_list,cnn_list]).T
 data.columns=['times','linear','cnn']
 
-data.plot(x='times',xlim=(0,3000),ylim=(0,1),title='compare linear with cnn')
+data.plot(x='times',xlim=(0,15000),ylim=(0,1),title='compare linear with cnn')
 plt.show()
 
