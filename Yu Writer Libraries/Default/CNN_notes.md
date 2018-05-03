@@ -53,3 +53,23 @@ Deep learning knowledges
 ========================
 最开始写这个文档只是想记录下对CNN的理解，今天被推荐了一个很好的深度学习资源相关的帖子：[如何看懂深度学习论文里的数学原理部分？](https://www.zhihu.com/question/266533669/answer/377229055)所以考虑后续是不是文章title要改一下。
 
+
+
+TensorFlow Playground
+=====================
+***From 知乎：***
+TensorFlow=tensor(张量)+flow(流动)，张量的流动；TensorFlow Playground的作者想要阐述的侧重点就是“张量如何流动”的。
+Playground是一个图形化用于教学目的的简单神经网络在线演示平台，只是一个动态演示的网站，可视化了神经网络的训练过程，有助于加深对神经网络的理解。
+知乎上看到一句话觉得形容的很贴切：每个神经元都是“傻傻的”，只会做一件事情，然后通过weight去组合协调，完成一件复杂的任务。而学习/训练的过程不过是去寻找选择最优weight的过程。
+
+website：
+- [GitHub-tensorflow playground](https://github.com/tensorflow/playground)
+- [Brower-tensorflow playground](http://playground.tensorflow.org/)
+
+![页面使用演示图](../../images/TensorflowPlayground.PNG)
+
+图解：
+从左到右依次为：数据集，特征值，隐含层和输出层。
+- 红色框中表示的参数：迭代次数，激活函数等；
+- 绿色框表示数据集、特征集等几个过程；
+- 粉色框表示的是特征值的权重；
