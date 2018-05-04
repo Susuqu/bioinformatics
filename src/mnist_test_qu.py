@@ -55,7 +55,7 @@ def weight_variable(shape):
     initial=tf.truncated_normal(shape,stddev=0.1)
     return tf.Variable(initial)
 '''
-忘了这个是干啥的了？是定义的卷积核的权重初始值么？
+忘了这个是干啥的了？是定义的卷积核的权重初始值么？——是，权重值的初始化
 CNN里的W其实就是卷积核的大小和输入输出结果的个数
 '''
 
