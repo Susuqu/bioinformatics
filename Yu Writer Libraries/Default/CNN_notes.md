@@ -78,3 +78,5 @@ website：
 TensorFlow
 ==========
 重复YL的例子时，虽然大致了解整个流程，但对其中的细节尤其TensorFlow的框架不是太懂，所以就在网上找相应的资源，偶然发现了这个网站：[TensorFlow中文社区](http://www.tensorfly.cn/)，感觉是超级给力的！里面有[TensorFlow完整教程](http://www.tensorfly.cn/tfdoc/tutorials/overview.html)，一些我们熟知的例子：面向机器学习初学者的 MNIST 初级教程、高级教程、卷积神经网络、循环神经网络等等也都有介绍，推荐逐一尝试。
+
+关于cat这个例子里其实有些东西没弄懂，比如像素的转换那个地方，刚好结合上面的网站可以看下相应的原理。
