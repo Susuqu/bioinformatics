@@ -111,6 +111,27 @@ with tf.Session() as sess:
             ax.set_title('{}:{}'.format(taglist[j], n), fontsize=8)
             ax.imshow(test[j])
             # plt.show()
+
+# ReLu过程
+def conv_max_relu_test(image,batch):
+    image=tf.cast(image,tf.float32)
+    cat_batch = tf.reshape(image, [1, 741, 834, 3])
+    W = weight_variable([batch, batch, 3, 3])
+    op = tf.nn.conv2d(cat_batch, W, strides=[1, 1, 1, 1], padding='SAME', use_cudnn_on_gpu=False)
+
+    max_op_2x2 = max_pool_2x2(op)
+    max_op_15x15 = max_pool_15x15(op)
+
+    conv = tf.reshape(tf.cast(op, tf.uint8), [741, 834, 3])
+    conv_max_2x2 = tf.reshape(tf.cast(max_op_2x2, tf.uint8), [math.ceil(741 / 2), math.ceil(834 / 2), 3])
+    conv_max_15x15 = tf.reshape(tf.cast(max_op_15x15, tf.uint8), [math.ceil(741 / 15), math.ceil(834 / 15), 3])
+
+    cr=relu(conv)
+    cmr2x2=relu(conv_max_2x2)
+    cmr15x15=relu(conv_max_15x15)
+
+
+
 '''
-2018/05/04 suspend
+2018/05/06 suspend
 '''
