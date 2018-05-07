@@ -2,7 +2,8 @@ CNN basic knowledges
 ==========
 - Record of some key notes by **QuSusu**.
 - Some statements were directly copy from others.
-- Start at 2018/04/23, last update at 2018/04/27.
+- Start at 2018/04/23, last update at 2018/05/07.
+- 其实，我也不知道为啥我要坚持研究机器学习啊~
 
 ----
 **所谓卷积神经网络，就是会自动的对于一张图片学习出最好的卷积核以及这些卷积核的组合方式，也就是对于一张图片的任务来说，求出最好的图片对于本任务的特征的表达，然后来进行判断** 
@@ -80,3 +81,4 @@ TensorFlow
 重复YL的例子时，虽然大致了解整个流程，但对其中的细节尤其TensorFlow的框架不是太懂，所以就在网上找相应的资源，偶然发现了这个网站：[TensorFlow中文社区](http://www.tensorfly.cn/)，感觉是超级给力的！里面有[TensorFlow完整教程](http://www.tensorfly.cn/tfdoc/tutorials/overview.html)，一些我们熟知的例子：面向机器学习初学者的 MNIST 初级教程、高级教程、卷积神经网络、循环神经网络等等也都有介绍，推荐逐一尝试。
 
 关于cat这个例子里其实有些东西没弄懂，比如像素的转换那个地方，刚好结合上面的网站可以看下相应的原理。
+    - tensorflow笔记：[常用函数说明](https://blog.csdn.net/u014595019/article/details/52805444)
