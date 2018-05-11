@@ -23,7 +23,7 @@ def drawHist(ratiovalue,title,groupnumber):
     plt.xlabel('ratio')
     plt.ylabel('Frequency')
     plt.title('distribution of ratio in all samples')
-    plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig'+os.sep+'{}.{}'.format(title,'.png'))
+    plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig'+os.sep+'{}.{}'.format(title,'png'))
     plt.show()
 
 drawHist(ratiovalue=y_p,title='test_adhdp_distribution ',groupnumber=100)
