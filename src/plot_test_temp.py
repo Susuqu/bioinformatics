@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter   #matplotlib绘图设置坐标轴刻度大小和刻度
 
 '''
+这个文档主要是对绘图时细节优化进行测试的脚本，优化方面包括：
+    title：字体，大小；
+    坐标轴：刻度，字体，大小；
+
 summary:
 1.发现绘图难点是不知道要用什么数值呈现什么样的图，而不是代码的实现；
 2.处理这种杂乱的文本数据时，有个操作很关键——数据清洗，比如缺失值的填补、读取进来的数据类型等；
@@ -15,11 +19,7 @@ summary:
     折线图和散点图绘制之前要先对值进行排序，否则乱序，看不出规律啊；
     根据“索引”或者“值”对series和dataframe进行排序不一样啊；
     
-
-
-
 '''
-
 table = pd.read_table("tmp.txt", encoding='gb2312',na_values=[" ","-","NONE",'X'])  #清洗数据
 table[['adhdp','adhdt']]=table[['adhdp','adhdt']].astype(float) # 转换数据类型
 y_p=table["adhdp"].sort_values()

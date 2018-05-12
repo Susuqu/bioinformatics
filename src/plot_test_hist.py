@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 '''
 我记得有个公式可以评估分多少组是合适的来着？
+组间差异？卡方检验之类的怎么做？
 '''
 table = pd.read_table("tmp.txt", encoding='gb2312',na_values=[" ","-","NONE",'X'])  #清洗数据
 table[['adhdp','adhdt']]=table[['adhdp','adhdt']].astype(float)# 转换数据类型

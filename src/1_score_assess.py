@@ -5,6 +5,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pylab import *
 
+'''
+plot可以优化的点：subgroup画图的循环怎么实现？
+缺失值的替换不成功；
+ADHD诊断分组时，为什么有两个ADHD-C好像？是不是数据清洗还是什么过程有问题？
+'''
 data = pd.read_table("1_score_arrange.txt", encoding='gbk',na_values=[" ","-","NONE",'X','#VALUE!','#DIV/0!'])
 # print(data.shape)   #(282, 10)
 

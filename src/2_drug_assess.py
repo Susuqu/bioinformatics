@@ -4,6 +4,14 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 
+'''
+plot可以优化的点：subgroup画图的循环怎么实现？
+缺失值的替换不成功；
+
+
+'''
+
+
 data = pd.read_table("2_drug_arrange.txt", encoding='utf-8',na_values=[" ","-","NONE",'X','#VALUE!','#DIV/0!'])    #为啥文件名是中文的时候就有问题呢？
 # print(data.shape)   #(468,31)
 # print(data['ssattp1'])  #看下空值之类的是否替换成功
