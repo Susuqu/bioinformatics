@@ -4,6 +4,10 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from pylab import *
+import seaborn as sns
+import scipy
+from scipy import stats
+
 
 '''
 缺失值的替换不成功；
@@ -18,8 +22,72 @@ mpl.rcParams['font.sans-serif'] = ['SimHei']    #这一行必须加，否则u的
 
 control=data.loc[data[u'诊断']=='NC']
 case=data.loc[data[u'诊断']!='NC']
-# print(case)
+print(len(control)) # 92
+print(len(case))    #189
 
+# t检验
+# 两独立样本t检验：先用stats.levene判断方差齐性，然后如果非齐性则要在加入stats.ttest_ind(默认方差是齐性的)中加入参数——equal_var = False
+def ttest(colname):
+    p_levene=stats.levene(case[colname].dropna().values,control[colname].dropna().values).pvalue
+    print(p_levene)
+    '''
+    print(stats.levene(case[u'倒背'].dropna().values,control[u'倒背'].dropna().values))
+    LeveneResult(statistic=0.8593739556288843, pvalue=0.35471516924984425)，p值远大于0.05，认为两总体具有方差齐性。
+    '''
+    if p_levene<0.05:
+        print('{}{}{}'.format(colname,":",stats.ttest_ind(case[colname].dropna().values, control[colname].dropna().values, equal_var=False).pvalue))
+    else:
+        print('{}{}{}'.format(colname,"在case和control之间的P-value:",stats.ttest_ind(case[colname].dropna().values, control[colname].dropna().values).pvalue))
+
+namelist=[u'正背',u'倒背',u'数字广度粗分',u'数字广度量表分']
+for name in namelist:
+    ttest(colname=name)
+'''
+正背在case和control之间的P-value:0.8041959437085187
+倒背在case和control之间的P-value:0.20787065720005246
+数字广度粗分在case和control之间的P-value:0.6841430097226837
+数字广度量表分在case和control之间的P-value:0.051395256884453074
+'''
+
+sys.exit()
+# 计算直方图的bins数目
+
+# 在同一个图里分别画case和control的频数分布直方图，看两个分布的重叠情况；
+# 在同一个图里分别画case和control的频数分布直方图，同时通过seaborn绘制拟合曲线；
+def drawCaseControlHist(case,control,colname,filename):
+    case_data=case[colname].dropna().sort_values().values
+    # print(case_data)
+    control_data=control[colname].dropna().sort_values().values
+    # print(col_value)
+    plt.hist(case_data,bins=30,label='case',color='red',histtype= 'step')
+    plt.hist(control_data,bins=30,label='control', color='blue',histtype= 'step')
+    plt.xlabel('{}'.format(colname))
+    plt.ylabel('Frequency')
+    plt.title('{}{}'.format(colname,' 在ADHD患者（Case）和健康对照（Control）中的分布情况'))
+    plt.legend(loc='best')
+    plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\score'+os.sep+'{}_{}.{}'.format(filename,colname,'png'))
+    plt.show()
+    plt.close()
+    # 注意上面的图画完了要有plt.close(),否则和下面的图会同时出现在一个画布里。
+    # 通过seaborn绘制拟合曲线
+    sns.set_palette("hls")  #设置所有图的颜色，使用hls色彩空间
+    sns.distplot(case_data, bins=15, kde=True, color='r',label='case')   #kde=True表示是否显示拟合曲线
+    sns.distplot(control_data,bins=15,kde=True,color='b',label='control')
+    plt.xlabel('{}'.format(colname))
+    plt.ylabel('Frequency')
+    plt.title('{}{}'.format(colname,' 在ADHD患者（Case）和健康对照（Control）中的分布情况'))
+    plt.legend(loc='best')
+    plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\score' + os.sep + '{}_{}_{}.{}'.format(filename, colname,'line','png'))
+    plt.show()
+    plt.close()
+
+# namelist=[u'数字广度粗分']
+namelist=[u'正背',u'倒背',u'数字广度粗分',u'数字广度量表分']
+for name in namelist:
+    drawCaseControlHist(colname=name,case=case,control=control,filename='CompareCaseConHist')
+
+# sys.exit()
+# 分别单独绘制case和control的hist图，看下分布情况；
 def drawCaseHist(df,colname,groupnumber,filename):
     col_value=df[colname].dropna().sort_values().values
     # print(col_value)
@@ -31,8 +99,6 @@ def drawCaseHist(df,colname,groupnumber,filename):
     plt.show()
     plt.close()
 
-namelist=[u'数字广度粗分',u'数字广度量表分']
-# namelist=[u'月龄',u'正背',u'倒背',u'数字广度粗分',u'数字广度量表分']
 for name in namelist:
     drawCaseHist(colname=name,groupnumber=15,df=case,filename='case')
     drawCaseHist(colname=name, groupnumber=15, df=control,filename='control')
@@ -91,4 +157,3 @@ def drawSubBar(colname,subname,kind):
 # drawSubBar(colname=u'倒背',subname=u'性别',kind='line')
 # drawSubBar(colname=u'倒背',subname=u'月龄',kind='line')
 
-# 其实我还想做个卡方检验，可是来不及了
