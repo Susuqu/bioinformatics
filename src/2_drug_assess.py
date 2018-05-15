@@ -14,7 +14,7 @@ data = pd.read_table("2_drug_arrange.txt", encoding='utf-8',na_values=[" ","-","
 # print(data['ssattp1'])  #看下空值之类的是否替换成功
 
 # 这两个list后面的函数或者方法都会用到的
-colnamelist=['adhdpr1', 'adhdpr', 'atScoreP', 'atRatioP', 'hiScoreP', 'hiRatioP', 'adhdtr1', 'adhdtr', 'atScoreT', 'atRatioT', 'hiScoreT', 'hiRatioT']
+# colnamelist=['adhdpr1', 'adhdpr', 'atScoreP', 'atRatioP', 'hiScoreP', 'hiRatioP', 'adhdtr1', 'adhdtr', 'atScoreT', 'atRatioT', 'hiScoreT', 'hiRatioT']
 subnamelist=['sex','pharm','subtype']
 
 # 分别对以下列（分类变量）单独绘制bar plot: pharm, sex, subtype
@@ -26,17 +26,18 @@ def drawBarOne(colname,ax):
     # plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug'+os.sep+'{}.{}'.format(colname,'png'))
     # plt.show()
     # plt.close()
+#
+# fig1=plt.figure(figsize=(30,10))
+# n = 1
+# for name in subnamelist:
+#     ax = fig1.add_subplot(1, 3, n)
+#     drawBarOne(colname=name,ax=ax)
+#     n=n+1
+# plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new'+os.sep+'{}.{}'.format('sex_pharm_subtype','png'))
+# plt.show()
+# plt.close()
 
-fig1=plt.figure(figsize=(30,10))
-n = 1
-for name in subnamelist:
-    ax = fig1.add_subplot(1, 3, n)
-    drawBarOne(colname=name,ax=ax)
-    n=n+1
-plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new'+os.sep+'{}.{}'.format('sex_pharm_subtype','png'))
-plt.show()
-plt.close()
-
+# sys.exit()
 #####################################################################################################################################################
 
 # 分别对以下列（分类变量）绘制hist plot: iq, age, adhdpr1, adhdpr, atScoreP, atRatioP, hiScoreP, hiRatioP, adhdtr1, adhdtr, atScoreT, atRatioT, hiScoreT, hiRatioT
@@ -98,7 +99,7 @@ def drawSubBarOne(colname,subname,ax):
     ax.set_title('{}''{}'.format(subname,' distribution in all samples'))
     ax.legend(loc='best')#在合适的位置放置图例
 
-# colnamelist=['adhdpr1']# for test
+# colnamelist=['adhdpr']# for test
 for name in colnamelist:
     fig2=plt.figure(figsize=(30,10))
     n = 1
@@ -107,6 +108,17 @@ for name in colnamelist:
         print()
         drawSubBarOne(colname=name,subname=sub,ax=ax)
         n=n+1
-    plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new' + os.sep + '{}_{}.{}'.format(name,'sex_pharm_subtype','png'))
+        ax = plt.gca()  # 获取当前的坐标轴，gca=get current axis，之后对坐标轴字体等操作都是在ax基础上进行的，因为一般不直接对plt设置属性
+        ax.xaxis.set_major_locator(xmajorLocator)
+        ax.xaxis.set_minor_locator(xminorLocator)
+        for ind, label in enumerate(ax.yaxis.get_ticklabels()):
+            if ind % 8 == 0:  # every 10th label is kept
+                label.set_visible(True)
+            else:
+                label.set_visible(False)
+
+    # plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new' + os.sep + '{}_{}.{}'.format(name,'sex_pharm_subtype','png'))
     plt.show()
     plt.close()
+
+#遗留的问题：减分率那种的话连续数值太多，所以画出来的图效果不好！
