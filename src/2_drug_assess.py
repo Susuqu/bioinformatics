@@ -17,6 +17,43 @@ data = pd.read_table("2_drug_arrange.txt", encoding='utf-8',na_values=[" ","-","
 # colnamelist=['adhdpr1', 'adhdpr', 'atScoreP', 'atRatioP', 'hiScoreP', 'hiRatioP', 'adhdtr1', 'adhdtr', 'atScoreT', 'atRatioT', 'hiScoreT', 'hiRatioT']
 subnamelist=['sex','pharm','subtype']
 
+#遗留的问题：减分率那种的话连续数值太多，所以画出来的图效果不好！
+
+# plot sub plot in one picture
+def drawSubHistOne(colname,subname,ax):
+    case_data= data.groupby([colname, subname])[[colname]].count().unstack()
+    col_value = data[colname].dropna().sort_values().values
+    plt.hist(case_data, bins=50, label='case', histtype='step',stacked=True)
+    # data.groupby([colname, subname])[[colname]].count().unstack().plot(kind='bar',stacked=True,ax=ax)
+    ax.set_xlabel('{}'.format(colname))
+    ax.set_ylabel('Frequency')
+    ax.set_title('{}''{}'.format(subname,' distribution in all samples'))
+    ax.legend(loc='best')#在合适的位置放置图例
+
+colnamelist=['adhdpr']# for test
+for name in colnamelist:
+    fig2=plt.figure(figsize=(30,10))
+    n = 1
+    for sub in subnamelist:
+        ax = fig2.add_subplot(1, 3, n)
+        print()
+        drawSubHistOne(colname=name,subname=sub,ax=ax)
+        n=n+1
+        ax = plt.gca()  # 获取当前的坐标轴，gca=get current axis，之后对坐标轴字体等操作都是在ax基础上进行的，因为一般不直接对plt设置属性
+        # ax.xaxis.set_major_locator(xmajorLocator)
+        # ax.xaxis.set_minor_locator(xminorLocator)
+        for ind, label in enumerate(ax.yaxis.get_ticklabels()):
+            if ind % 2 == 0:  # every 10th label is kept
+                label.set_visible(True)
+            else:
+                label.set_visible(False)
+
+    # plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new' + os.sep + '{}_{}.{}'.format(name,'sex_pharm_subtype','png'))
+    plt.show()
+    plt.close()
+
+sys.exit()
+############################################################################################
 # 分别对以下列（分类变量）单独绘制bar plot: pharm, sex, subtype
 def drawBarOne(colname,ax):
     data[colname].value_counts().plot(kind='bar',ax=ax)
@@ -121,4 +158,3 @@ for name in colnamelist:
     plt.show()
     plt.close()
 
-#遗留的问题：减分率那种的话连续数值太多，所以画出来的图效果不好！
