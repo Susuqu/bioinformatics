@@ -52,6 +52,22 @@ for name in namelist:
 sys.exit()
 # 计算直方图的bins数目
 
+'''
+https://blog.csdn.net/denny2015/article/details/50581784
+
+'''
+
+'''
+some useful website:
+总结的方式值得借鉴：简单明了    https://blog.csdn.net/elecjack/article/details/50776199
+pandas聚合：https://www.cnblogs.com/huiyang865/p/5577772.html
+pandas stack：https://blog.csdn.net/SecondLieutenant/article/details/79499930
+matplotlib详解图像的各个部分：很好的笔记   https://www.cnblogs.com/nju2014/p/5620776.html
+描述性统计分析：很好的笔记   https://www.cnblogs.com/jasonfreak/p/5441512.html
+pandas数据清洗的思想：  https://blog.csdn.net/zhili8866/article/details/68134481
+
+'''
+
 # 在同一个图里分别画case和control的频数分布直方图，看两个分布的重叠情况；
 # 在同一个图里分别画case和control的频数分布直方图，同时通过seaborn绘制拟合曲线；
 def drawCaseControlHist(case,control,colname,filename):
