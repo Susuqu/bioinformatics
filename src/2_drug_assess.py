@@ -3,7 +3,8 @@ import os
 import sys
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import seaborn as sns
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 '''
 缺失值的替换不成功；
 把图片都放在一张图上的时候label显示有点不好看；
@@ -20,37 +21,42 @@ subnamelist=['sex','pharm','subtype']
 #遗留的问题：减分率那种的话连续数值太多，所以画出来的图效果不好！
 
 # plot sub plot in one picture
-def drawSubHistOne(colname,subname,ax):
-    case_data= data.groupby([colname, subname])[[colname]].count().unstack()
+def drawSubHistOne(colname,ax):
+    # case_data= data.groupby([colname, subname])[[colname]].count().unstack()
     col_value = data[colname].dropna().sort_values().values
-    plt.hist(case_data, bins=50, label='case', histtype='step',stacked=True)
+    print(col_value)
+    # plt.hist(col_value, bins=50, histtype='step',stacked=True)
+    sns.set_palette("hls")  #设置所有图的颜色，使用hls色彩空间
+    sns.distplot(col_value, bins=50, kde=True, color='r',norm_hist=1)
     # data.groupby([colname, subname])[[colname]].count().unstack().plot(kind='bar',stacked=True,ax=ax)
     ax.set_xlabel('{}'.format(colname))
     ax.set_ylabel('Frequency')
-    ax.set_title('{}''{}'.format(subname,' distribution in all samples'))
-    ax.legend(loc='best')#在合适的位置放置图例
-
-colnamelist=['adhdpr']# for test
+    ax.set_title('{}''{}'.format(colname,' distribution in all samples'))
+    # ax.legend(loc='best')#在合适的位置放置图例
+colnamelist=['adhdpr', 'atRatioP', 'hiRatioP']
+# colnamelist=['adhdtr', 'atRatioT', 'hiRatioT']
+# colnamelist=['adhdpr']# for test
+fig2 = plt.figure(figsize=(30, 10))
+n = 1
+xFormatter=FormatStrFormatter('%.1f')
+xmajorLocator= MultipleLocator(0.4)
+xminorLocator= MultipleLocator(0.2)
 for name in colnamelist:
-    fig2=plt.figure(figsize=(30,10))
-    n = 1
-    for sub in subnamelist:
-        ax = fig2.add_subplot(1, 3, n)
-        print()
-        drawSubHistOne(colname=name,subname=sub,ax=ax)
-        n=n+1
-        ax = plt.gca()  # 获取当前的坐标轴，gca=get current axis，之后对坐标轴字体等操作都是在ax基础上进行的，因为一般不直接对plt设置属性
-        # ax.xaxis.set_major_locator(xmajorLocator)
-        # ax.xaxis.set_minor_locator(xminorLocator)
-        for ind, label in enumerate(ax.yaxis.get_ticklabels()):
-            if ind % 2 == 0:  # every 10th label is kept
-                label.set_visible(True)
-            else:
-                label.set_visible(False)
-
+    ax = fig2.add_subplot(1, 3, n)
+    drawSubHistOne(colname=name,ax=ax)
+    ax = plt.gca()  # 获取当前的坐标轴，gca=get current axis，之后对坐标轴字体等操作都是在ax基础上进行的，因为一般不直接对plt设置属性
     # plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new' + os.sep + '{}_{}.{}'.format(name,'sex_pharm_subtype','png'))
-    plt.show()
-    plt.close()
+    ax.xaxis.set_major_locator(xmajorLocator)
+    ax.xaxis.set_minor_locator(xminorLocator)
+    for ind, label in enumerate(ax.xaxis.get_ticklabels()):
+        if ind %2 == 0:  # every 10th label is kept
+            label.set_visible(True)
+        else:
+            label.set_visible(False)
+    n=n+1
+plt.savefig(r'E:\OuMengCompany\Project\ScientificResearchService\ADHD新样本性状分析\fig\drug_new' + os.sep + '{}.{}'.format('tttadhdtr_atRatioT_hiRatioT','png'))
+plt.show()
+plt.close()
 
 sys.exit()
 ############################################################################################
