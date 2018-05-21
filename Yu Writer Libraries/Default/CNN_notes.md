@@ -2,7 +2,7 @@ CNN basic knowledges
 ==========
 - Record of some key notes by **QuSusu**.
 - Some statements were directly copy from others.
-- Start at 2018/04/23, last update at 2018/05/07.
+- Start at 2018/04/23, last update at 2018/05/021.
 - 其实，我也不知道为啥我要坚持研究机器学习啊~
 
 ----
@@ -82,3 +82,30 @@ TensorFlow
 
 关于cat这个例子里其实有些东西没弄懂，比如像素的转换那个地方，刚好结合上面的网站可以看下相应的原理。
     - tensorflow笔记：[常用函数说明](https://blog.csdn.net/u014595019/article/details/52805444)
+
+Manifold learning 流形学习
+==========
+于我而言一个新的概念，简单查了下，记录一些内容，好多也不太理解，后续慢慢理解吧。
+
+### 基本概念
+流形学习是机器学习、模式识别中的一种方法。
+**主要思想是：** 将高维的数据映射到低维，使该低维的数据能够反映原高维数据的某些本质结构特征。
+**前提假设：** 即某些高维数据，实际是一种低维的流形结构嵌入在高维空间中。由于数据内部特征的限制，一些高维中的数据会产生维度上的冗余，实际上只需要比较低的维度就能唯一地表示。
+**流形学习的目的：** 是将其映射回低维空间中，揭示其本质。
+
+所以说，流形学习的一个主要应用就是 _“非线性降维”_ 。而非线性降维因为考虑到了流形的问题，所以降维的过程中不但考虑到了距离，更考虑到了生成数据的拓扑结构。
+而对于降维算法来说，如果使用传统的欧氏距离来作为距离尺度，显然会抛弃“数据的内部特征”。如果测量球面两点距离采用空间欧氏距离，那就会忽略掉“这是个球面”这个信息。
+
+其实用一幅图就都明白了，那就是传说中的瑞士卷（图转自 [浅谈流形学习 &quot; Free Mind](https://link.zhihu.com/?target=http%3A//blog.pluskid.org/%3Fp%3D533) ，侵删）：
+
+** 图解：** 如果我们观察到的数据是三维的，但其本质是一个二维流形。图上所标注的两个圈圈，在流形（把卷展开）上本距离非常远，但是用三维空间的欧氏距离来计算则它们的距离要近得多。
+
+![瑞士卷](瑞士卷.jpg)
+
+有两个不错的介绍流形学习的帖子可以后续看一下：
+- [浅谈流形学习](http://blog.pluskid.org/?p=533)
+- [从SNE到t-SNE再到LargeVis](http://bindog.github.io/blog/2016/06/04/from-sne-to-tsne-to-largevis/)，这个t-SNE概念总是看到，不知道具体是啥，后续得扫个盲。
+
+### 实例
+- [一个后续可以试验尝试的例子，附代码](http://scikit-learn.org/stable/auto_examples/manifold/plot_lle_digits.html)
+- [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
