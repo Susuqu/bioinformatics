@@ -5,6 +5,12 @@
 但依然有疑惑的点，明天再弄清楚细节哈~
 # @Time     : 2018/05/30
 # @Author   : Qu Susu
+
+some questions:
+1.看了一下这个代码，还是不懂为啥expression要这样定义？那么是不是我改变expression就可以改变形状？
+2.range的范围是怎么取的？
+3.3D图片打印那个，发现有个变量定义了但是根本没用到啊：cset
+学会了一招新技能，关闭坐标轴的刻度：plt.axis('off')
 '''
 import sys
 import time
@@ -13,6 +19,7 @@ init(wrap=False) #这个刚好学以致用了！
 
 words=input('Please input the words you want to say!:')
 # eg: "Dear, Happy Valentine's Day! LiLei will always Love you till the end! Forever!"
+# input的话其实就和perl的标准输入很像了
 for item in words.split():
     letterlist=[]
     for y in range(12,-12,-2):
@@ -83,7 +90,6 @@ def plot_implicit(fn, bbox=(-1.5, 1.5)):
     # plt.axis('off')  #取消坐标轴显示
     plt.savefig(r"E:\OuMengCompany\Project\git\temp\bioinform\src\fig\3D_heart.png")
     plt.show()
-
 
 if __name__ == '__main__':
     plot_implicit(heart_3d)
