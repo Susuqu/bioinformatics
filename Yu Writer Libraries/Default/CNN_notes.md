@@ -2,7 +2,7 @@ CNN basic knowledges
 ==========
 - Record of some key notes by **QuSusu**.
 - Some statements were directly copy from others.
-- Start at 2018/04/23, last update at 2018/05/021.
+- Start at 2018/04/23, last update at 2018/06/06.
 - 其实，我也不知道为啥我要坚持研究机器学习啊~
 
 ----
@@ -109,3 +109,20 @@ Manifold learning 流形学习
 ### 实例
 - [一个后续可以试验尝试的例子，附代码](http://scikit-learn.org/stable/auto_examples/manifold/plot_lle_digits.html)
 - [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
+
+### 常用的机器学习算法
+周一的时候给老板汇报了一下机器学习的基本知识、应用基础和文献分享，然后在准备ppt进行调研的过程中了解到一些比较好的内容特意记录下来，找时间还是要看下。
+- [知乎链接-常用的机器学习算法比较？](https://www.zhihu.com/question/27306416)，个人感觉了解各类算法的基本思想还是有必要的，一方面是更利于在进行相关研究时进行算法的选择，另一方面呢则是学习这种思想。
+- [轻松看懂机器学习十大常用算法](http://blog.jobbole.com/108395/)，这个链接也挺好，上面是有动画图片的那种对算法的介绍，很萌！
+- [知乎链接-目前机器学习在生物学领域有应用吗？](https://www.zhihu.com/question/41428117?sort=created)
+- [CSDN链接-一文读懂机器学习，大数据/自然语言处理/算法全有了](https://blog.csdn.net/pinellina/article/details/50374942)，这个文章提纲就很吸引我，感觉作者撰写文章的逻辑比较好：
+    - 1.一个故事说明什么是机器学习
+    - 2.机器学习的定义
+    - 3.机器学习的范围
+    - 4.机器学习的方法
+    - 5.机器学习的应用–大数据
+    - 6.机器学习的子类–深度学习
+    - 7.机器学习的父类–人工智能
+    - 8.机器学习的思考–计算机的潜意识
+    - 9.总结
+    - 10.后记
