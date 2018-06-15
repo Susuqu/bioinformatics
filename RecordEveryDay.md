@@ -254,4 +254,7 @@ _其实这种感觉很好，玩一天之后还记得一定要学习一会然后�
 - 可是可是呢，我一定要坚持，转眼第二轮60天的计划，也已经超过20天了呢，不错不错，一定不能掉队的！
 - [html页面设置](http://www.w3school.com.cn/tags/html_ref_dtd.asp)，先Mark！
 
+## Day59
+- single cell sequence research: docs & ppt prepare；
+- markkdown两种方式实现页内跳转；
 **有时候陷入怪圈怎么也不会，有时候突然发现好简单**
