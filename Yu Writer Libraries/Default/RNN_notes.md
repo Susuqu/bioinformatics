@@ -9,3 +9,10 @@ RNN对处理时间序列和语言文本序列问题有独特的优势。
 
 ### LSTM
 1997年有人就提出了LSTM（Long Short Term Memory Network），这是一种特殊的RNN，LSTM生来就是能够长时间记忆的网络，不需要刻意学习。
+
+### t-SNE
+原来一直说的t-SNE是一种可视化的降维方法啊，而且还是08年才被提出来的概念，愚蠢了哈！
+三种降维技术：PCA、t-SNE 和自编码器。
+个人感觉现阶段看2个帖子就够了：
+- [无监督学习之t-SNE](https://zhuanlan.zhihu.com/p/28967965)
+- [基于TensorFlow理解三大降维技术：PCA、t-SNE 和自编码器](https://zhuanlan.zhihu.com/p/27935339)
