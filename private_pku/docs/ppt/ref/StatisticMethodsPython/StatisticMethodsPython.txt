@@ -1,0 +1,23 @@
+python可以做假设检验、方差分析和回归分析，其中：
+假设检验主要用到的包是：scipy.stats；
+方差分析和回归分析主要用到的是：statsmodels.stats.anova；http://blog.csdn.net/yijiaobani/article/details/78113293	http://blog.csdn.net/yijiaobani/article/details/78113197
+
+参考Scipy中文使用链接：https://www.kancloud.cn/wizardforcel/scipy-lecture-notes/129877
+参考Scipy英文使用链接：https://docs.scipy.org/doc/scipy/reference/stats.html
+
+Statistic Methods	Python	ref_website
+Independent t-test or Point-Biserial Correlation	ttest_ind(a, b[, axis, equal_var, nan_policy]);pointbiserialr(x, y)
+Mann-Whitney Test	scipy.stats.ranksums(x, y)	http://blog.csdn.net/flyfrommath/article/details/75541607
+Dependent t-test
+Wilcoxon Matched-Pairs Test
+One Way Independent ANOVA	f_oneway(*args)
+Kruskal-Wallis Test
+One Way Repeated Measures ANOVA
+Friedman's ANOVA
+Pearson Correlation or Regression
+SpearmanCorrelation or Kendall's Tau
+Independent Factorial ANOVA/Multiple Regression
+Factorial Repeated Measures ANOVA
+Factorial Mixed ANOVA
+Multiple Regression
+Multiple Regression/ANCOVA
