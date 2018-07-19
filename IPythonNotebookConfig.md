@@ -28,18 +28,19 @@
 
 - 启动notebook进行访问，如果无法访问就需要配置了
 - 配置server使得在web输入网址可以访问ipython notebook
-1) 首先输入ipython生成秘钥
-2) 生成jupyter的config文件
-3) 修改配置文件：~/.jupyter/jupyter_notebook_config.py
-4) 在local上，打开浏览器，输入：https://serverIP:8888/
-    - cenOS的server IP查看：ip add
+    1) 首先输入ipython生成秘钥
+    2) 生成jupyter的config文件
+    3) 修改配置文件：~/.jupyter/jupyter_notebook_config.py
+    4) 在local上，打开浏览器，输入：https://serverIP:8888/
+        - cenOS的server IP查看：ip add
 ---
 **以下，由于时间紧任务多，捣鼓了半天没有解决的问题，记录下来是以后待解决摸索的~~~~~~~~~~**
 
 基本能做到以上两点就可以顺利使用了，当然，我还希望：
-3.直接把我ipython notebook网页上的东西可以推送到github上面；
+
+3) 直接把我ipython notebook网页上的东西可以推送到github上面；
     - [参考帖子待配置：将Jupyter自动发布到GitHubPages](https://www.jianshu.com/p/d78e9f741a79)
-4.我的python有多个版本，然后我也有多个虚拟环境，更有多个ipython notebook，那么如何保证我调用的ipython notebook是我期望的路径下的？
+4) 我的python有多个版本，然后我也有多个虚拟环境，更有多个ipython notebook，那么如何保证我调用的ipython notebook是我期望的路径下的？
     - 有个关键词是：Jupyter lab 安装及多kernel配置
-5.我还希望我的ipynb文件是带有markdown目录跳转格式的；
+5) 我还希望我的ipynb文件是带有markdown目录跳转格式的；
     - [参考帖子待配置：为Jupyter Notebook添加目录功能](https://blog.csdn.net/tina_ttl/article/details/51031113)
