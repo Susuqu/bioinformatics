@@ -11,4 +11,4 @@
 学习python的生信菜鸟小白，需要掌握哪些python的基本编程知识呢，我简单总结了一下起初入门的时候会这些就行了：
 [python数据分析入门学习笔记](https://www.cnblogs.com/zzhzhao/p/5269217.html#undefined)
 
-![](./images/pythonStudy.PNG)
+![转自博客](./images/pythonStudy.PNG)
