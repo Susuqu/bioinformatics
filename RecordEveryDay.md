@@ -366,6 +366,9 @@ _其实这种感觉很好，玩一天之后还记得一定要学习一会然后�
 ## Day91
 - ipython notebook config
 
+## Day92
+- rank test & batch effect
+
 数了数，估计第二轮的计划快要到期了！
 
 **自勉！**
