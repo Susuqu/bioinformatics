@@ -372,6 +372,11 @@ _其实这种感觉很好，玩一天之后还记得一定要学习一会然后�
 ## Ddy93
 - 效率有点低……
 
+## Day94
+- choose better k
+- set local ipython for mac
+
+
 数了数，估计第二轮的计划快要到期了！
 
 **自勉！**
