@@ -44,3 +44,4 @@
     - 有个关键词是：Jupyter lab 安装及多kernel配置
 5) 我还希望我的ipynb文件是带有markdown目录跳转格式的；
     - [参考帖子待配置：为Jupyter Notebook添加目录功能](https://blog.csdn.net/tina_ttl/article/details/51031113)
+6) 直接在网页上显示plt.show()的图片，而不是在pycharm里；
