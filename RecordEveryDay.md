@@ -376,6 +376,11 @@ _其实这种感觉很好，玩一天之后还记得一定要学习一会然后�
 - choose better k
 - set local ipython for mac
 
+## Day95
+- django set
+
+## Day96
+- def
 
 数了数，估计第二轮的计划快要到期了！
 
