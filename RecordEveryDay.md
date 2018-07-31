@@ -389,6 +389,9 @@ _其实这种感觉很好，玩一天之后还记得一定要学习一会然后�
 
 ## Day99
 
+## Day100
+- single cell sequencing UMI read and test
+
 
 数了数，估计第二轮的计划快要到期了！
 
