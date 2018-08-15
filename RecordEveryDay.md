@@ -12,5 +12,8 @@
 ...
 ## - Day104 delete
 
-**自勉！**
+---
+# I'm Back. The small targets for each phase in the near future are as follows:
+- First: The goal before 9/15 is at least 1 hour programming (python or R) per day. And submit a small program. 
+
 
